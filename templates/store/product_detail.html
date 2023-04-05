@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+	<br>  <p  class="bg-secondary mb-3">
+<p  class="text-center">
+		<b>Product Details</b></p>
+<hr>
+
+
+<div class="card">
+	<div class="row">
+		<aside class="col-sm-6 border-right">
+<article class="gallery-wrap">
+<div class="img-big-wrap">
+  <div> <a href="#"><img src="{{ single_product.images.url }}"  ></a></div>
+</div> <!-- slider-product.// -->
+
+</article> <!-- gallery-wrap .end// -->
+		</aside>
+		<aside class="col-sm-4">
+<article class="card-body p-5">
+	<h3 class="title mb-3">{{single_product.product_name}}</h3>
+
+<p class="price-detail-wrap">
+	<span class="price h3 text-warning">
+		<span class="currency">Euro €</span><span class="num">{{single_product.price}}</span>
+	</span>
+
+</p> <!-- price-detail-wrap .// -->
+<dl class="item-property">
+  <dt>Product Description</dt>
+  <dd><p>{{ single_product.description }} </p></dd>
+</dl>
+<dl class="param param-feature">
+  <dt>Product Category</dt>
+  <dd>{{ single_product.category }}</dd>
+</dl>  <!-- item-property-hor .// -->
+<dl class="param param-feature">
+  <dt>Stock</dt>
+  <dd>{{ single_product.stock }}</dd>
+</dl>  <!-- item-property-hor .// -->
+<dl class="param param-feature">
+  <dt>Delivery</dt>
+  <dd>UK, Ireland</dd>
+</dl>  <!-- item-property-hor .// -->
+<!--<dl class="param param-feature">
+  <dt>Product Rating</dt>
+  <dd>{{ single_product.review }}</dd>
+</dl> -->
+
+	<!--<hr>
+	<div>
+	<a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
+</div>
+<br> -->
+<dl class="param param-feature">
+  <dt>Ratings</dt>
+
+</dl>
+<div class="rating-star">
+
+	<span>
+		<i class="fa fa-star{% if product.averageReview < 0.5 %}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+		<i class="fa fa-star{% if product.averageReview < 1.5 %}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+		<i class="fa fa-star{% if product.averageReview < 2.5 %}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+		<i class="fa fa-star{% if product.averageReview < 3.5 %}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+		<i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+		</span>
+</div>
+<br>
+<div>
+	<a href="{% url 'add_to_cart' single_product.id %}" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+	</div>
+<hr>
+	<div class="row">
+		<div class=column>
+			<header class="section-heading">
+				<dl class="param param-feature">
+				  <dt>Customer Reviews</dt>
+
+				</dl>
+				 <p  class="bg-secondary mb-3">
+			 <p  class="text-center">
+				<!--	<b>{{Review}}</b></p> -->
+
+				</header>
+
+				<article class="box mb-3">
+					<div class="icontext w-100">
+						<img src="{% static './images/avatars/avatar2.jpg' %}" class="img-xs icon rounded-circle">
+						<div class="text">
+							<span class="date text-muted float-md-right">01-04-2023</span>
+							<h6>St. Patrick</h6>
+          </div>
+					</div>
+					<div class="mt-3">
+						<p>
+							Amazing Eternity Jewellery! Great full of real gemstones and diamonds best to go for a bride....!
+							</p>
+							</div>
+				</article>
+		</div>
+</article> <!-- card-body.// -->
+		</aside> <!-- col.// -->
+	</div> <!-- row.// -->
+</div> <!-- card.// -->
+
+
+</div>
+<!--container.//-->
+
+
+<br><br><br>
+
+{% endblock %}
