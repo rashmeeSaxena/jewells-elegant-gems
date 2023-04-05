@@ -8,6 +8,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="cache-control" content="max-age=604800" />
@@ -108,7 +109,12 @@
 			<p class="text-center mb-3">
 				<img src="{%static './images/misc/payments.png' %}" height="26">
 			</p>
-			<a href="./place-order.html" class="btn btn-primary btn-block"> Checkout </a>
+			 <form action="checkout" method="POST">
+
+				 <button type="submit"class="btn btn-primary btn-block"  id="checkout">Checkout</button>
+		 </form>
+			<!--<a href="./place-order.html" class="btn btn-primary btn-block"> Checkout </a> -->
+			<br>
 			<a href="./store.html" class="btn btn-light btn-block">Continue Shopping</a>
 		</div> <!-- card-body.// -->
 		</div> <!-- card.// -->
@@ -122,6 +128,7 @@
 
 </div> <!-- container .//  -->
 </section>
+
 <!-- ========================= SECTION CONTENT END// ========================= -->
 </body>
 </html>
