@@ -1,1 +1,1 @@
-web: gunicorn Jewells.wsgi
+web: gunicorn Jewells.wsgi:application --log-file -

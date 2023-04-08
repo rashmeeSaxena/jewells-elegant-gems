@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-#import django_heroku
+import django_heroku
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -32,7 +34,7 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_51MtMIcI2KWOqLN2zGd315g1vTiqwDojf0TiKRbTbxz8UE
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -149,7 +151,7 @@ STATICFILES_DIRS = [
 #STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-#DEFAULT_FILE_STORAGE = 'Jewells.media_storages.MediaStorage'
+DEFAULT_FILE_STORAGE = 'Jewells.media_storages.MediaStorage'
 
 # media files configuration
 MEDIA_URL = '/media/'
@@ -162,4 +164,4 @@ MESSAGE_TAGS = {
 
 
 #Activate Django-Heroku.
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
