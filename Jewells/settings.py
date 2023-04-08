@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     #'whitenoise.middleware.WhitenoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -141,7 +142,7 @@ STATICFILES_DIRS = [
 ]
 #STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #DEFAULT_FILE_STORAGE = 'Jewells.media_storages.MediaStorage'
 
 # media files configuration
