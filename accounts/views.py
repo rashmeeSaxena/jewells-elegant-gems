@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, UserForm, UserProfileForm
 from .models import Account, UserProfile
-#from orders.models import Order, OrderProduct
+from orders.models import Order, OrderProduct
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -14,9 +14,9 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 
-#from carts.views import _cart_id
-#from carts.models import Cart, CartItem
-#import requests
+from carts.views import _cartid
+from carts.models import Cart, CartItem
+import requests
 
 
 def register(request):
@@ -70,15 +70,15 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
-            #try:
-            #    cart = Cart.objects.get(cart_id=_cart_id(request))
-            #    is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
-            #    if is_cart_item_exists:
-            #        cart_item = CartItem.objects.filter(cart=cart)
-
+            try:
+                cart = Cart.objects.get(cart_id=_cartid(request))
+                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
+                if is_cart_item_exists:
+                    cart_item = CartItem.objects.filter(cart=cart)
+                    print(cart_item)
             #        # Getting the product variations by cart id
             #        product_variation = []
-            #        for item in cart_item:
+                    for item in cart_item:
             #            variation = item.variations.all()
             #            product_variation.append(list(variation))
 
@@ -100,17 +100,17 @@ def login(request):
             #                item_id = id[index]
             #                item = CartItem.objects.get(id=item_id)
             #                item.quantity += 1
-            #                item.user = user
-            #                item.save()
+                            item.user = user
+                            item.save()
             #            else:
             #                cart_item = CartItem.objects.filter(cart=cart)
             #                for item in cart_item:
             #                    item.user = user
             #                    item.save()
-            #except:
-            #    pass
+            except:
+                pass
             auth.login(request, user)
-            #messages.success(request, 'You are now logged in.')
+            messages.success(request, 'You are now logged in.')
             #url = request.META.get('HTTP_REFERER')
             #try:
             #    query = requests.utils.urlparse(url).query
@@ -165,31 +165,32 @@ def dashboard(request):
 
 
 def forgotPassword(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        if Account.objects.filter(email=email).exist():
-           user = Account.objects.get(email__iexact=email)
-
+#    if request.method == 'POST':
+#            email = request.POST['email']
+#    if Account.objects.filter(email=email).exist():
+#            user = Account.objects.get(email__iexact=email)
+#
 # USER ACTIVATION
-           current_site = get_current_site(request)
-           mail_subject = 'Reset Your Password'
-           message = render_to_string('accounts/reset_password_email.html', {
-                'user': user,
-                'domain': current_site,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': default_token_generator.make_token(user),
-           })
-           to_email = email
-           send_email = EmailMessage(mail_subject, message, to=[to_email])
-           send_email.send()
+#    current_site = get_current_site(request)
+#    mail_subject = 'Reset Your Password'
+#    message = render_to_string('accounts/reset_password_email.html',
+#             {
+#                'user': user,
+#                'domain': current_site,
+#                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+#                'token': default_token_generator.make_token(user),
+#              })
+#           to_email = email
+#           send_email = EmailMessage(mail_subject, message, to=[to_email])
+#           send_email.send()
 
 
-           messages.success(request, 'Password resent link has been sent to your email address')
-           return('login')
-        else:
-          messages.error(request, 'Account Does Not Exist')
-          return redirect('forgotPassword')
-    return render(request, 'accounts/forgotPassword.html')
+#           messages.success(request, 'Password resent link has been sent to your email address')
+#           return('login')
+#        else:
+#          messages.error(request, 'Account Does Not Exist')
+#          return redirect('forgotPassword')
+       return render(request, 'accounts/forgotPassword.html')
 
 
 def resetpassword_validate(request, uidb64, token):
@@ -298,3 +299,7 @@ def order_detail(request, order_id):
         'subtotal': subtotal,
     }
     return render(request, 'accounts/order_detail.html', context)
+
+def My_Profile(request):
+    #return redirect(request, 'accounts/My_Profile.html')
+    return render(request, 'accounts/My_Profile.html')

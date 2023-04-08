@@ -88,6 +88,3 @@ class ProductGallery(models.Model):
     class Meta:
         verbose_name = 'productgallery'
         verbose_name_plural = 'product gallery'
-#class product_detail(models.Model):
-#    def get(self,request):
-#        return render(request, "store/product_detail.html", locals())

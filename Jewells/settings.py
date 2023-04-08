@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+#import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -22,6 +22,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'p5*5bulw)7ko$^jtffun075oi3+9p)2c*lp1k_htriq_b#to+('
+
+
+#Stripe API KEys
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51MtMIcI2KWOqLN2zGd315g1vTiqwDojf0TiKRbTbxz8UEJtWouqL7rRvf54M84tLPPOxJAKGuvj3V8Cc8UZlB5Z000Ddm0W3LD'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,8 +47,10 @@ INSTALLED_APPS = [
     'category',
     'accounts',
     'store',
-    'carts',
-    #'orders',
+    'carts.apps.CartsConfig',
+    'orders',
+    #'orders.apps.ordersConfig'
+
 ]
 
 MIDDLEWARE = [
@@ -154,4 +162,4 @@ MESSAGE_TAGS = {
 
 
 #Activate Django-Heroku.
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
