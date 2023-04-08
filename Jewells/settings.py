@@ -32,7 +32,7 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_51MtMIcI2KWOqLN2zGd315g1vTiqwDojf0TiKRbTbxz8UE
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
