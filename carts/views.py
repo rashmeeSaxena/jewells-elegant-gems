@@ -9,9 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 
-@login_required(login_url='login')
-def cart(request):
-    return render(request, 'store/cart.html')
+#@login_required(login_url='login')
+#def cart(request):
+ #   return render(request, 'store/cart.html')
 
 def _cartid(request):
     cart = request.session.session_key
@@ -66,7 +66,7 @@ def remove_cartitem(request, product_id):
     cart_item.delete()
     return redirect('cart')
 
-
+@login_required(login_url='login')
 def cart(request, total=0, quantity=0, cart_item=None):
     try:
         cart=Cart.objects.get(cart_id=_cartid(request))
