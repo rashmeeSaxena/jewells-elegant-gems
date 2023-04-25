@@ -110,7 +110,7 @@ def login(request):
             except:
                 pass
             auth.login(request, user)
-            messages.success(request, 'You are now logged in.')
+            #messages.success(request, 'You are now logged in.')
             #url = request.META.get('HTTP_REFERER')
             #try:
             #    query = requests.utils.urlparse(url).query
